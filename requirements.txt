@@ -7,4 +7,3 @@ peewee
 Werkzeug
 requests
 google-api-python-client
-os
