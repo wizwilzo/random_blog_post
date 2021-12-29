@@ -1,11 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Retrieve a random blogpost!</title>
+        <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
+        <title>Retrieve a random blog post!</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <style>
+        body{
+            color: gray;
+            font-family: monaco,monospace;
+        }
+        .button {
+            font-family: monaco, monospace;
+            background-color: orange;
+            color:blue;
+            font-size: 100px;
+        }
+        .button:hover {
+            font-family: monaco, monospace;
+            background-color: blue;
+            color: orange;
+            font-size: 100px;
+        }
         
-    </head>
+        </head>
+    </style>
     <body>
         
         <h2>Reading my blog has never been easier.</h2>
@@ -13,7 +33,9 @@
             I made this tool so that others can look back on my old posts easily. It utilizes the blogger API to generate all the post URLs so I don't have to do that myself. Just press the button as many times as you would like!
         </p><br>
         <form action="/go" method="get">
-            <button name="getRandomPostButton" type = "submit">Click me</button>
+            <button class="button" name="getRandomPostButton" type = "submit">
+                Click me <span class="icomoon"></span>
+            </button>
         </form>
         URL: <a href="{{ blog_url }}">{{blog_url}}</a>
     </body>
