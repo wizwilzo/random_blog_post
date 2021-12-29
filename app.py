@@ -5,9 +5,10 @@ import time
 import random
 from apiclient.discovery import build
 from os import environ
+import sys
 
 app = Flask(__name__)
-
+urls = []
 
 @app.route('/')
 def index():
@@ -16,6 +17,7 @@ def index():
 # pip install --upgrade google-api-python-client
 @app.route('/go')
 def funcGo():
+	global urls
 	Key = environ.get('BLOGGER_API_KEY')
 	BlogId = "865457885342918674"
 
@@ -25,7 +27,6 @@ def funcGo():
 		NextPage = None
 		while True:
 			resp = blog.posts().list(blogId=BlogId, maxResults = 500, pageToken = NextPage).execute()
-			time.sleep(2)
 			try:
 				for i in range(500):
 					ret.append(resp["items"][i]["url"])
@@ -35,9 +36,11 @@ def funcGo():
 			if NextPage is None: 
 				break
 		return ret
-	urls = get_urls()
-	# print (urls)
-	# print (len(urls))
+	temp=blog.blogs().get(blogId=BlogId).execute()
+	amount_of_posts=temp["posts"]["totalItems"]
+	if len(urls) == 0 or len(urls) != amount_of_posts:
+		# print ("REFILLING", file = sys.stderr)
+		urls = get_urls()
 	
 	return render_template('index.html', blog_url =random.choice(urls))
 
