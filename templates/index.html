@@ -7,9 +7,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
     
     <style>
+        
         body{
-            color: gray;
+            /*background-image: {{ url_for('static', filename='temptempte.jpg') }};*/
+            background-image: url('/static/temptempte.jpg');
+            background-size: cover;
+            color: black;
             font-family: monaco,monospace;
+            font-size: 30px;
+            margin: 250px;
         }
         .button {
             font-family: monaco, monospace;
@@ -28,7 +34,8 @@
     </style>
     <body>
         
-        <h2>Reading my blog has never been easier.</h2>
+        <center><h2>Reading my blog has never been easier.</h2>
+        
         <p>
             I made this tool so that others can look back on my old posts easily. It utilizes the blogger API to generate all the post URLs so I don't have to do that myself. Just press the button as many times as you would like!
         </p><br>
@@ -38,5 +45,7 @@
             </button>
         </form>
         URL: <a href="{{ blog_url }}">{{blog_url}}</a>
+
+    </center>
     </body>
 </html>
