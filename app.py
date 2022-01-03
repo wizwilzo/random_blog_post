@@ -9,6 +9,7 @@ import sys
 
 app = Flask(__name__)
 urls = []
+ret = ""
 
 @app.route('/')
 def index():
@@ -18,6 +19,7 @@ def index():
 @app.route('/go')
 def funcGo():
 	global urls
+	global ret
 	Key = environ.get('BLOGGER_API_KEY')
 	BlogId = "865457885342918674"
 
@@ -41,8 +43,12 @@ def funcGo():
 	if len(urls) == 0 or len(urls) != amount_of_posts:
 		# print ("REFILLING", file = sys.stderr)
 		urls = get_urls()
+
+	output = random.choice(urls)
+
+	ret = "\n" + output + ret
 	
-	return render_template('index.html', blog_url =random.choice(urls))
+	return render_template('index.html', blog_url = ret)
 
 
 
