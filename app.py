@@ -46,7 +46,7 @@ def funcGo():
 
 	output = random.choice(urls)
 
-	ret = "\n" + output + ret
+	ret = output
 	
 	return render_template('index.html', blog_url = ret)
 
